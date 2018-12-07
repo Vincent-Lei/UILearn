@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.demo.ui.uiapplication">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 读写文件 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".UIApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.demo.ui.uiapplication.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepath" />
+        </provider>
+
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".appcompat.AppcompatTest"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".recyclerview.RecyclerTest"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".recyclerview.headFootTest.HeadFootRecycleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".recyclerview.extra.ExtraRecyclerViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".drawerlayout.DrawerLayoutTest"
+            android:screenOrientation="portrait"
+            android:theme="@style/DrawerLayoutTest" />
+        <activity
+            android:name=".drawerlayout.NavigationViewTest"
+            android:screenOrientation="portrait"
+            android:theme="@style/DrawerLayoutTest" />
+        <activity
+            android:name=".testinputlayout.TextInputLayoutTest"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".toolbar.ToolBarTest"
+            android:screenOrientation="portrait"
+            android:theme="@style/DrawerLayoutTest" />
+
+        <activity
+            android:name=".palette.PaletteTest"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tabLayout.TabLayoutTest"
+            android:screenOrientation="portrait"
+            android:theme="@style/DrawerLayoutTest" />
+        <activity
+            android:name=".floatingactionbutton.FloatingActionButtonTest"
+            android:screenOrientation="portrait"
+            android:theme="@style/DrawerLayoutTest" />
+        <activity
+            android:name=".viewpagetransformer.PageTransformerTest"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".nestedscroll.NestedScrollTest"
+            android:screenOrientation="portrait"
+            android:theme="@style/DrawerLayoutTest" />
+        <activity
+            android:name=".nestedscroll.CollapsingTest"
+            android:screenOrientation="portrait"
+            android:theme="@style/DrawerLayoutTest" />
+        <activity
+            android:name=".nestedscroll.behavior.BehaviorTest"
+            android:screenOrientation="portrait"
+            android:theme="@style/DrawerLayoutTest" />
+        <activity
+            android:name=".materialdesignAnimation.MdAnimationTest"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".constraintlayout.ConstraintLayoutTest"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".materialdesignAnimation.activityAnimation.AnimationFirstActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/activity_animation" />
+        <activity
+            android:name=".materialdesignAnimation.activityAnimation.AnimationSecondActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/activity_animation" />
+        <activity
+            android:name=".materialdesignAnimation.activityAnimation.AnimationThirdActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/activity_animation" />
+        <activity
+            android:name=".materialdesignAnimation.svg.SVGTest"
+            android:screenOrientation="portrait"
+            android:theme="@style/activity_animation" />
+        <activity
+            android:name=".scroller.ScrollerTest"
+            android:screenOrientation="portrait"
+            android:theme="@style/activity_animation" />
+        <activity
+            android:name=".paintcanvas.PaintCanvasTest"
+            android:screenOrientation="portrait"
+            android:theme="@style/activity_animation" />
+        <activity
+            android:name=".paintcanvas.PaintZoomActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/activity_animation" />
+        <activity
+            android:name=".paintcanvas.PathWaveActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/activity_animation" />
+        <activity
+            android:name=".aspectj.AspectJTest"
+            android:screenOrientation="portrait"
+            android:theme="@style/activity_animation" />
+
+        <service
+            android:name=".accessibilityservice.TestAccessibilityService"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility" />
+        </service>
+        <activity
+            android:name=".accessibilityservice.AccessibilityActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/activity_animation" />
+        <activity
+            android:name=".textview.TextViewTest"
+            android:screenOrientation="portrait"
+            android:theme="@style/activity_animation" />
+    </application>
+
+</manifest>

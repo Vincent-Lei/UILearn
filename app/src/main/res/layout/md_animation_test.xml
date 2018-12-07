@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_ripple"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/drawable_ripple"
+        android:clickable="true"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:text="ripple"
+        android:textColor="@android:color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_revel"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/drawable_ripple"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:text="revel\n(Click Me)"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/tv_revel_show"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="20dp"
+            android:background="@android:color/holo_purple"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="revelShow"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/tv_revel_show_2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="20dp"
+            android:background="@android:color/holo_purple"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="revelShow"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_valueAnimator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:clickable="true"
+        android:onClick="onClick">
+
+        <TextView
+            android:id="@+id/tv_revel_show_self"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@android:color/holo_purple"
+            android:gravity="center"
+            android:text="属性动画实现"
+            android:textColor="@android:color/white" />
+
+        <com.demo.ui.uiapplication.materialdesignAnimation.ClipView
+            android:id="@+id/clip_view"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@null"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_svg"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/holo_purple"
+        android:gravity="center"
+        android:text="SVG"
+        android:onClick="onClick"
+        android:clickable="true"
+        android:textColor="@android:color/white" />
+</LinearLayout>

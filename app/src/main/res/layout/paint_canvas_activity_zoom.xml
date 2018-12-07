@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.demo.ui.uiapplication.paintcanvas.ZoomView
+            android:id="@+id/zoomview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <com.demo.ui.uiapplication.paintcanvas.MaskFilterView
+            android:id="@+id/mfv_bh_0"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/zoomview" />
+
+        <com.demo.ui.uiapplication.paintcanvas.MaskFilterView
+            android:id="@+id/mfv_bh_1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toRightOf="@id/mfv_bh_0"
+            app:layout_constraintTop_toBottomOf="@id/zoomview" />
+
+        <com.demo.ui.uiapplication.paintcanvas.MaskFilterView
+            android:id="@+id/mfv_scsf_r"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mfv_bh_0" />
+
+        <com.demo.ui.uiapplication.paintcanvas.MaskFilterView
+            android:id="@+id/mfv_scsf_g"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toRightOf="@id/mfv_scsf_r"
+            app:layout_constraintTop_toBottomOf="@id/mfv_bh_0" />
+
+        <com.demo.ui.uiapplication.paintcanvas.MaskFilterView
+            android:id="@+id/mfv_scsf_b"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toRightOf="@id/mfv_scsf_g"
+            app:layout_constraintTop_toBottomOf="@id/mfv_bh_0" />
+
+        <com.demo.ui.uiapplication.paintcanvas.MaskFilterView
+            android:id="@+id/mfv_xz_45"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mfv_scsf_r" />
+
+        <com.demo.ui.uiapplication.paintcanvas.MaskFilterView
+            android:id="@+id/mfv_xz_90"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toRightOf="@id/mfv_xz_45"
+            app:layout_constraintTop_toBottomOf="@id/mfv_scsf_r" />
+
+        <com.demo.ui.uiapplication.paintcanvas.MaskFilterView
+            android:id="@+id/mfv_xz_135"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toRightOf="@id/mfv_xz_90"
+            app:layout_constraintTop_toBottomOf="@id/mfv_scsf_r" />
+
+        <com.demo.ui.uiapplication.paintcanvas.MaskFilterView
+            android:id="@+id/mfv_pd"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mfv_xz_135" />
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:onClick="onClick"
+            android:text="NEXT"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mfv_pd" />
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

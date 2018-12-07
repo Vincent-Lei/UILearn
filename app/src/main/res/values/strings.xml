@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">UIApplication</string>
+    <string name="drawer_open">OPEN</string>
+    <string name="drawer_close">CLOSE</string>
+    <string name="test_accessibility">测试辅助程序</string>
+
+
+</resources>

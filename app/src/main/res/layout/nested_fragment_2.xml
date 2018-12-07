@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="党员、干部要坚定马克思主义、共产主义信仰，脚踏实地为实现党在现阶段的基本纲领而不懈努力，扎扎实实做好每一项工作，取得“接力赛”中我们这一棒的优异成绩。领导干部特别是高级干部要把系统掌握马克思主义基本理论作为看家本领，老老实实、原原本本学习马克思列宁主义、毛泽东思想特别是邓小平理论、“三个代表”重要思想、科学发展观"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="面对纷繁复杂的社会现实，党员干部特别是领导干部务必把加强道德修养作为十分重要的人生必修课，自觉从中华优秀传统文化中汲取营养，老老实实向人民群众学习，时时处处见贤思齐，以严格标准加强自律、接受他律，努力以道德的力量去赢得人心、赢得事业成就。"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="　要建立管思想、管工作、管作风、管纪律的从严管理体系，加强全方位管理，加强党内监督，管好关键人、管到关键处、管住关键事、管在关键时，特别是要把一把手管住管好。"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="　要建立管思想、管工作、管作风、管纪律的从严管理体系，加强全方位管理，加强党内监督，管好关键人、管到关键处、管住关键事、管在关键时，特别是要把一把手管住管好。"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="　要建立管思想、管工作、管作风、管纪律的从严管理体系，加强全方位管理，加强党内监督，管好关键人、管到关键处、管住关键事、管在关键时，特别是要把一把手管住管好。"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="　要建立管思想、管工作、管作风、管纪律的从严管理体系，加强全方位管理，加强党内监督，管好关键人、管到关键处、管住关键事、管在关键时，特别是要把一把手管住管好。"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="　要建立管思想、管工作、管作风、管纪律的从严管理体系，加强全方位管理，加强党内监督，管好关键人、管到关键处、管住关键事、管在关键时，特别是要把一把手管住管好。"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="　要建立管思想、管工作、管作风、管纪律的从严管理体系，加强全方位管理，加强党内监督，管好关键人、管到关键处、管住关键事、管在关键时，特别是要把一把手管住管好。"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

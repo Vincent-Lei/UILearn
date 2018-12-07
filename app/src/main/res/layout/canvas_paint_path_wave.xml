@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.demo.ui.uiapplication.paintcanvas.PathWaveView
+        android:id="@+id/path_wave_view"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
+    <com.demo.ui.uiapplication.paintcanvas.PathWave2View
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+    <com.demo.ui.uiapplication.paintcanvas.PathSearchView
+        android:id="@+id/path_search_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/holo_purple"/>
+</LinearLayout>
