@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="dp_30">37.5dp</dimen>
+    <dimen name="dp_100">125dp</dimen>
+    <dimen name="text_size_info">15dp</dimen>
+</resources>

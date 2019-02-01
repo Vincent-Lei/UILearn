@@ -1,14 +1,11 @@
 package com.demo.ui.uiapplication;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -21,7 +18,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.demo.ui.uiapplication.accessibilityservice.AccessibilityActivity;
-import com.demo.ui.uiapplication.accessibilityservice.FileOpenHelper;
 import com.demo.ui.uiapplication.appcompat.AppcompatTest;
 import com.demo.ui.uiapplication.aspectj.AspectJTest;
 import com.demo.ui.uiapplication.constraintlayout.ConstraintLayoutTest;
@@ -29,12 +25,15 @@ import com.demo.ui.uiapplication.drawerlayout.DrawerLayoutTest;
 import com.demo.ui.uiapplication.file.FileManager;
 import com.demo.ui.uiapplication.floatingactionbutton.FloatingActionButtonTest;
 import com.demo.ui.uiapplication.materialdesignAnimation.MdAnimationTest;
+import com.demo.ui.uiapplication.memoryfile.MemoryFileActivity;
 import com.demo.ui.uiapplication.nestedscroll.NestedScrollTest;
+import com.demo.ui.uiapplication.opengles.OpenGLESActivity;
 import com.demo.ui.uiapplication.paintcanvas.PaintCanvasTest;
 import com.demo.ui.uiapplication.palette.PaletteTest;
 import com.demo.ui.uiapplication.recyclerview.RecyclerTest;
 import com.demo.ui.uiapplication.scroller.ScrollerTest;
 import com.demo.ui.uiapplication.tabLayout.TabLayoutTest;
+import com.demo.ui.uiapplication.testdb.DBTest;
 import com.demo.ui.uiapplication.testinputlayout.TextInputLayoutTest;
 import com.demo.ui.uiapplication.textview.TextViewTest;
 import com.demo.ui.uiapplication.toolbar.ToolBarTest;
@@ -65,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
         mItemList.add("AspectJ");
         mItemList.add("Accessibility");
         mItemList.add("TextViewTest");
+        mItemList.add("MemoryFile");
+        mItemList.add("OpenGLES");
+        mItemList.add("TestDb");
     }
 
     @Override
@@ -129,12 +131,35 @@ public class MainActivity extends AppCompatActivity {
                     case 16:
                         intent = new Intent(MainActivity.this, TextViewTest.class);
                         break;
+                    case 17:
+                        intent = new Intent(MainActivity.this, MemoryFileActivity.class);
+                        break;
+                    case 18:
+                        intent = new Intent(MainActivity.this, OpenGLESActivity.class);
+                        break;
+                    case 19:
+                        DBTest.testDb(getApplicationContext());
+                        break;
                 }
                 if (intent != null)
                     startActivity(intent);
             }
 
         });
+
+        String msg = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String seed = "Android";
+        try {
+            byte[] rawKey = AESEncryptorUtil.getRawKey(seed.getBytes());
+            LogUtil.d("rawKey.length = " + rawKey.length);
+            LogUtil.d("rawKey = " + AESEncryptorUtil.toHex(rawKey));
+            String encrypt = AESEncryptorUtil.encrypt(rawKey, msg);
+            LogUtil.d("encrypt = " + encrypt);
+            String decrypt = AESEncryptorUtil.decrypt(rawKey, encrypt);
+            LogUtil.d("decrypt = " + decrypt);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -184,4 +209,5 @@ public class MainActivity extends AppCompatActivity {
             return convertView;
         }
     }
+
 }
