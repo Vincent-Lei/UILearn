@@ -24,7 +24,7 @@ import java.util.List;
 
 public class ImageManager {
 
-    private static final int DEFAULT_WH = 400;
+    private static final int DEFAULT_WH = 600;
     //大小为kb
     public static final int MAX_IMAGE_SIZE = 100;
 

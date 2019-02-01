@@ -73,7 +73,7 @@ public class CompressImageFileTask extends AsyncTask<Void, Void, Void> {
         if (bitmap == null)
             return null;
         byte[] buff = ImageManager.bitmapToByteArray(bitmap, maxKb, true);
-        File file = FileManager.getCacheFile(String.valueOf(System.currentTimeMillis()), true);
+        File file = FileManager.getFile(String.valueOf(System.currentTimeMillis()), StorageType.TYPE_CACHE, true);
         return ImageManager.saveBitmapByteArrayToLocal(buff, file.getAbsolutePath());
     }
 }

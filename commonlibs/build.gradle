@@ -30,9 +30,9 @@ dependencies {
     implementation project.global_design_support
     implementation project(':simpledialog')
     implementation 'com.alibaba:fastjson:1.1.59.android'
-    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
-    implementation 'com.github.bumptech.glide:glide:4.2.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.2.0'
-    implementation 'com.github.bumptech.glide:okhttp3-integration:4.2.0@aar'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    implementation 'com.github.bumptech.glide:okhttp3-integration:4.8.0@aar'
     implementation 'com.bm.photoview:library:1.4.1'
 }

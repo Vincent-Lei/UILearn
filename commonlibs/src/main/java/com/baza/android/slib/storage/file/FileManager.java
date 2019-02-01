@@ -19,7 +19,7 @@ import java.util.Locale;
  */
 
 public class FileManager {
-    private static final String APP_PRIVATE_DATA_PATH = "privateData/";
+    private static final String APP_PRIVATE_DATA_PATH = "appData/";
 
     /**
      * 初始化文件根目录
@@ -28,29 +28,29 @@ public class FileManager {
         RootStorage.init(application, rootPath);
     }
 
-    /**
-     * 获取文件
-     *
-     * @param isCreateAuto false不存在时不去创建
-     */
     public static File getFile(String fileName, StorageType storageType, boolean isCreateAuto) {
         return getFile(null, fileName, storageType, isCreateAuto);
     }
 
-    public static File getFilePath(String fileSaveDir, StorageType storageType) {
+    public static File getFile(String fileName, String fileSaveDir, boolean isCreateAuto) {
+        return getFile(fileSaveDir, fileName, null, isCreateAuto);
+    }
+
+    private static File getFilePath(String fileSaveDirs, StorageType storageType) {
         String filePath;
-        if (TextUtils.isEmpty(fileSaveDir))
+        if (TextUtils.isEmpty(fileSaveDirs))
             filePath = RootStorage.getRootPath() + storageType.getPath();
         else
-            filePath = fileSaveDir;
-
+            filePath = fileSaveDirs;
         File file = new File(filePath);
         if (!file.exists() && !file.mkdirs())
             return null;
         return file;
     }
 
-    public static File getFile(String fileSaveDir, String fileName, StorageType storageType, boolean isCreateAuto) {
+    private static File getFile(String fileSaveDir, String fileName, StorageType storageType, boolean isCreateAuto) {
+        if (storageType != null & storageType == StorageType.TYPE_PRIVATE)
+            return getPrivateFile(fileName, isCreateAuto);
         File filePath = getFilePath(fileSaveDir, storageType);
         if (filePath == null)
             return null;
@@ -67,48 +67,50 @@ public class FileManager {
         return file;
     }
 
-    public static String getDir(StorageType storageType) {
-        return RootStorage.getRootPath() + storageType.getPath();
+    public static String getFileAbsolutePath(String fileName, StorageType storageType) {
+        return getFileAbsolutePath(null, fileName, storageType);
+    }
+
+    public static String getFileAbsolutePath(String fileName, String fileSaveDir) {
+        return getFileAbsolutePath(fileSaveDir, fileName, null);
+    }
+
+    private static String getFileAbsolutePath(String fileSaveDir, String fileName, StorageType storageType) {
+        if (storageType != null && storageType == StorageType.TYPE_PRIVATE)
+            return getPrivateFileAbsolutePath(fileName);
+        File filePath = getFilePath(fileSaveDir, storageType);
+        if (filePath == null)
+            return null;
+        return filePath.getAbsolutePath() + File.separator + fileName;
     }
 
     public static String getRootDir() {
         return RootStorage.getRootPath();
     }
 
-    public static File getDataFile(String fileName, boolean isCreateAuto) {
-        return getFile(null, fileName, StorageType.TYPE_DATA, isCreateAuto);
+
+    private static File getPrivateFile(String fileName, boolean isCreateAuto) {
+        String fileAbsolutePath = getPrivateFileAbsolutePath(fileName);
+        if (fileAbsolutePath == null)
+            return null;
+        File file = new File(fileAbsolutePath);
+        if (!file.exists())
+            try {
+                if (isCreateAuto && file.createNewFile())
+                    return file;
+                file = null;
+            } catch (IOException e) {
+                e.printStackTrace();
+                file = null;
+            }
+        return file;
     }
 
-    public static File getCacheFile(String fileName, boolean isCreateAuto) {
-        return getFile(null, fileName, StorageType.TYPE_CACHE, isCreateAuto);
-    }
-
-    public static File getTempFile(String fileName, boolean isCreateAuto) {
-        return getFile(null, fileName, StorageType.TYPE_TEMP, isCreateAuto);
-    }
-
-    public static File getLogFile(String fileName, boolean isCreateAuto) {
-        return getFile(null, fileName, StorageType.TYPE_LOG, isCreateAuto);
-    }
-
-    public static File getDownLoadFile(String fileName, boolean isCreateAuto) {
-        return getFile(null, fileName, StorageType.TYPE_DOWNLOAD, isCreateAuto);
-    }
-
-    public static File getAttachmentFile(String fileName, boolean isCreateAuto) {
-        return getFile(null, fileName, StorageType.TYPE_ATTACHMENT, isCreateAuto);
-    }
-
-    public static File getPrivateFile(String path, String fileName, boolean isCreateAuto) {
-        String fileDir = getPrivateDir(path, true);
+    private static String getPrivateFileAbsolutePath(String fileName) {
+        String fileDir = RootStorage.getPrivatePath(APP_PRIVATE_DATA_PATH, true);
         if (fileDir == null)
             return null;
-        return getFile(fileDir, fileName, null, isCreateAuto);
-    }
-
-    public static String getPrivateDir(String path, boolean isCreateAuto) {
-        path = (path == null ? APP_PRIVATE_DATA_PATH : path);
-        return RootStorage.getPrivatePath(path, isCreateAuto);
+        return fileDir + File.separator + fileName;
     }
 
     /**
@@ -117,7 +119,7 @@ public class FileManager {
     public static void saveObject(String fileName, Object o) {
         if (TextUtils.isEmpty(fileName) || o == null)
             return;
-        File file = getDataFile(fileName, true);
+        File file = getFile(fileName, StorageType.TYPE_DATA, true);
         ObjectOutputStream oos = null;
         try {
             oos = new ObjectOutputStream(new FileOutputStream(file));
@@ -141,7 +143,7 @@ public class FileManager {
     public static Object readObject(String fileName) {
         if (TextUtils.isEmpty(fileName))
             return null;
-        File file = getDataFile(fileName, false);
+        File file = getFile(fileName, StorageType.TYPE_DATA, false);
         if (file == null || !file.exists())
             return null;
         ObjectInputStream ois = null;

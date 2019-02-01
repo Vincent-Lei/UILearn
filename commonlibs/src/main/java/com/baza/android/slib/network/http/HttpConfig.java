@@ -11,7 +11,6 @@ public class HttpConfig {
     long mReadTimeOut;
     long mWriteTimeOut;
     boolean mLogEnable;
-    String mTrustHostName;
     String mLogTag = "httpRequest";
 
     public IRequestAssistHandler getRequestAssistHandler() {
@@ -27,7 +26,6 @@ public class HttpConfig {
         this.mLogTag = builder.mLogTag;
         this.mLogEnable = builder.mLogEnable;
         this.mRequestAssistHandler = builder.mRequestAssistHandler;
-        this.mTrustHostName = builder.mTrustHostName;
     }
 
 
@@ -38,12 +36,6 @@ public class HttpConfig {
         private boolean mLogEnable;
         private String mLogTag = "NetWorkHelper";
         private IRequestAssistHandler mRequestAssistHandler;
-        private String mTrustHostName;
-
-        public Builder trustHostName(String trustHostName) {
-            this.mTrustHostName = trustHostName;
-            return this;
-        }
 
         public Builder connectTimeOut(long connectTimeOut) {
             this.mConnectTimeOut = connectTimeOut;

@@ -15,7 +15,8 @@ public enum StorageType {
     TYPE_LOG("log/"),
     TYPE_TEMP("temp/"),
     TYPE_DOWNLOAD("download/"),
-    TYPE_ATTACHMENT("attachment/");
+    TYPE_ATTACHMENT("attachment/"),
+    TYPE_PRIVATE("private/");
 
 
     private String path;
