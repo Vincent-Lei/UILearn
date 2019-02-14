@@ -4,11 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.baza.android.slib.storage.database.DBWorker;
-import com.baza.android.slib.storage.database.core.DataBaseManager;
-import com.baza.android.slib.storage.database.core.DbClassUtil;
-import com.baza.android.slib.storage.database.handler.IDBControllerHandler;
-import com.baza.android.slib.storage.database.listener.IDBReplyListener;
+import com.slib.storage.database.DBWorker;
+import com.slib.storage.database.core.DataBaseManager;
+import com.slib.storage.database.core.DbClassUtil;
+import com.slib.storage.database.handler.IDBControllerHandler;
+import com.slib.storage.database.listener.IDBReplyListener;
 import com.demo.ui.uiapplication.LogUtil;
 
 import java.util.List;
