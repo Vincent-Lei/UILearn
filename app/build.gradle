@@ -32,6 +32,7 @@ dependencies {
 
     implementation project(':pulltorefresh')
     implementation project(':commonlibs')
+    implementation project(':plugininterface')
     implementation 'com.android.support:multidex:1.0.3'
 
 }

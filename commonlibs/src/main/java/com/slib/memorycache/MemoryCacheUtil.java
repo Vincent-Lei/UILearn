@@ -25,17 +25,17 @@ public class MemoryCacheUtil {
         return new LruMemoryCache(memoryCacheSize);
     }
 
-    private static boolean hasHoneycomb() {
+    public static boolean hasHoneycomb() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private static boolean isLargeHeap(Context context) {
+    public static boolean isLargeHeap(Context context) {
         return (context.getApplicationInfo().flags & ApplicationInfo.FLAG_LARGE_HEAP) != 0;
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private static int getLargeMemoryClass(ActivityManager am) {
+    public static int getLargeMemoryClass(ActivityManager am) {
         return am.getLargeMemoryClass();
     }
 }

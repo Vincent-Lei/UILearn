@@ -58,7 +58,7 @@ public class FileLoadTool {
         downLoadFile(url, fileSaveDir, extensionName, tagForSameUrl, null);
     }
 
-    public void downLoadFile(String url, String fileSaveDir, String extensionName, String tagForSameUrl, HashMap<String, String> header) {
+    public synchronized void downLoadFile(String url, String fileSaveDir, String extensionName, String tagForSameUrl, HashMap<String, String> header) {
         if (url == null)
             return;
         String fileName = getFileNameByUrl(url, extensionName, tagForSameUrl);

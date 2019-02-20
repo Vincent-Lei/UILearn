@@ -1,11 +1,16 @@
 package com.demo.ui.uiapplication;
 
+import android.Manifest;
+import android.app.ActivityManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -22,6 +27,7 @@ import com.demo.ui.uiapplication.appcompat.AppcompatTest;
 import com.demo.ui.uiapplication.aspectj.AspectJTest;
 import com.demo.ui.uiapplication.constraintlayout.ConstraintLayoutTest;
 import com.demo.ui.uiapplication.drawerlayout.DrawerLayoutTest;
+import com.demo.ui.uiapplication.dynamicload.DynamicLoadTest;
 import com.demo.ui.uiapplication.file.FileManager;
 import com.demo.ui.uiapplication.floatingactionbutton.FloatingActionButtonTest;
 import com.demo.ui.uiapplication.materialdesignAnimation.MdAnimationTest;
@@ -38,6 +44,8 @@ import com.demo.ui.uiapplication.testinputlayout.TextInputLayoutTest;
 import com.demo.ui.uiapplication.textview.TextViewTest;
 import com.demo.ui.uiapplication.toolbar.ToolBarTest;
 import com.demo.ui.uiapplication.viewpagetransformer.PageTransformerTest;
+import com.slib.memorycache.MemoryCacheUtil;
+import com.slib.utils.NotificationUtil;
 
 import java.util.ArrayList;
 
@@ -67,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
         mItemList.add("MemoryFile");
         mItemList.add("OpenGLES");
         mItemList.add("TestDb");
+        mItemList.add("TestNotification");
+        mItemList.add("TestCancelNotification");
+        mItemList.add("DynamicLoadTest");
     }
 
     @Override
@@ -140,6 +151,15 @@ public class MainActivity extends AppCompatActivity {
                     case 19:
                         DBTest.testDb(getApplicationContext());
                         break;
+                    case 20:
+                        testNotify();
+                        break;
+                    case 21:
+                        testCancnelNotify();
+                        break;
+                    case 22:
+                        intent = new Intent(MainActivity.this, DynamicLoadTest.class);
+                        break;
                 }
                 if (intent != null)
                     startActivity(intent);
@@ -161,6 +181,18 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        int memoryClass = am.getMemoryClass();
+        if (MemoryCacheUtil.hasHoneycomb() && MemoryCacheUtil.isLargeHeap(this)) {
+            memoryClass = MemoryCacheUtil.getLargeMemoryClass(am);
+        }
+        LogUtil.d("m_memoryClass = " + memoryClass);
+
+        Runtime runtime = Runtime.getRuntime();
+        LogUtil.d("runtime maxMemory= " + (runtime.maxMemory()) / (1024 * 1024));
+        LogUtil.d("runtime freeMemory= " + (runtime.freeMemory()) / (1024 * 1024));
+        LogUtil.d("runtime totalMemory= " + (runtime.totalMemory()) / (1024 * 1024));
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
     }
 
     @Override
@@ -168,6 +200,20 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             FileManager.initFileSystem(getApplication(), null);
         }
+    }
+
+    int notificationIndex = 0;
+    static final String CHANNEL_ID = "test_id";
+
+    private void testNotify() {
+        notificationIndex++;
+        Uri uri = Uri.parse("android.resource://com.demo.ui.uiapplication/raw/msg");
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, PaintCanvasTest.class), PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationUtil.doNotification(this, CHANNEL_ID, "测试通知栏" + notificationIndex, "这是一个通知" + notificationIndex, pendingIntent, uri, R.mipmap.ic_launcher);
+    }
+
+    private void testCancnelNotify() {
+        NotificationUtil.cancelNotification(this, CHANNEL_ID);
     }
 
     private static class MyAdapter extends BaseAdapter {

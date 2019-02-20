@@ -1,1 +1,1 @@
-include ':app', ':pulltorefresh', ':commonlibs', ':simpledialog', ':mylibrary'
+include ':app', ':pulltorefresh', ':commonlibs', ':simpledialog', ':plugininterface', ':dynamicapk'

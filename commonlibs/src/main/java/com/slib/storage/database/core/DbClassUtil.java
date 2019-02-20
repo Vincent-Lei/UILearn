@@ -30,7 +30,7 @@ public class DbClassUtil {
     public static <T> ContentValues buildContentValues(T t, String[] columns) {
         ContentValues contentValues = new ContentValues();
         Class<?> classZZ = t.getClass();
-        List<Field> fieldList = DbClassUtil.getFieldList(classZZ);
+        List<Field> fieldList = getFieldList(classZZ);
         ColumnAnnotation columnAnnotation;
         for (int i = 0, size = fieldList.size(); i < size; i++) {
             Field f = fieldList.get(i);
