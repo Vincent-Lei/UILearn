@@ -27,7 +27,7 @@ public class CustomerRunnable<T, V> extends BaseDbRunnable {
     }
 
     @Override
-    protected Class getDependModeClass() {
+    protected Class[] getDependModeClass() {
         return controllerHandler.getDependModeClass();
     }
 }

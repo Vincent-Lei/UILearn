@@ -23,8 +23,8 @@ import java.util.List;
 
 public class DBWorker {
 
-    public static void initDataBase(Context context, String dbName) {
-        DataBaseManager.getInstance(context).initDataBase(dbName);
+    public static void initDataBase(Context context, String dbName, int dbVersion) {
+        DataBaseManager.getInstance(context).initDataBase(dbName, dbVersion);
     }
 
     public static <T, V> void saveSingle(T t, IDBReplyListener<V> replyListener) {

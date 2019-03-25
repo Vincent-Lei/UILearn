@@ -12,8 +12,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 class DataBaseHelper extends SQLiteOpenHelper {
 
-    public DataBaseHelper(Context context) {
-        this(context, TableManager.DB_NAME, null, TableManager.DB_VERSION);
+    public DataBaseHelper(Context context, int dbVersion) {
+        this(context, TableManager.DB_NAME, null, dbVersion);
     }
 
     public DataBaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {

@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -48,6 +50,8 @@ import com.slib.memorycache.MemoryCacheUtil;
 import com.slib.utils.NotificationUtil;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     ListView listView;
@@ -181,18 +185,9 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        int memoryClass = am.getMemoryClass();
-        if (MemoryCacheUtil.hasHoneycomb() && MemoryCacheUtil.isLargeHeap(this)) {
-            memoryClass = MemoryCacheUtil.getLargeMemoryClass(am);
-        }
-        LogUtil.d("m_memoryClass = " + memoryClass);
-
-        Runtime runtime = Runtime.getRuntime();
-        LogUtil.d("runtime maxMemory= " + (runtime.maxMemory()) / (1024 * 1024));
-        LogUtil.d("runtime freeMemory= " + (runtime.freeMemory()) / (1024 * 1024));
-        LogUtil.d("runtime totalMemory= " + (runtime.totalMemory()) / (1024 * 1024));
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+        test();
+        int identifierId = getResources().getIdentifier("pg1_1", "mipmap", getPackageName());
+        LogUtil.d("identifierId = " + identifierId);
     }
 
     @Override
@@ -242,18 +237,67 @@ public class MainActivity extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             TextView textView;
             if (convertView == null) {
+                LinearLayout linearLayout = new LinearLayout(context);
                 textView = new TextView(context);
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
                 textView.setTextColor(Color.BLACK);
                 textView.setGravity(Gravity.CENTER);
                 textView.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 textView.setPadding(30, 30, 30, 30);
-                convertView = textView;
+                linearLayout.addView(textView);
+                convertView = linearLayout;
             }
-            textView = (TextView) convertView;
+            textView = (TextView) ((LinearLayout) convertView).getChildAt(0);
             textView.setText(mItemList.get(position));
             return convertView;
         }
+    }
+
+    private float formatMemorySize(long size) {
+        return formatMemorySize(size, false);
+    }
+
+    private float formatMemorySize(long size, boolean kb) {
+        if (kb)
+            return size * 1.0f / 1024;
+        return size * 1.0f / 1024 / 1024;
+    }
+
+
+    private void test() {
+        memoryInfoTest();
+        heapMemoryUseTest();
+    }
+
+    private void memoryInfoTest() {
+        Debug.MemoryInfo memoryInfo = new Debug.MemoryInfo();
+        Debug.getMemoryInfo(memoryInfo);
+        LogUtil.d("totalPss = " + formatMemorySize(memoryInfo.getTotalPss(), true));
+        LogUtil.d("dalvikPss = " + formatMemorySize(memoryInfo.dalvikPss, true));
+        LogUtil.d("nativePss = " + formatMemorySize(memoryInfo.nativePss, true));
+        LogUtil.d("otherPss = " + formatMemorySize(memoryInfo.otherPss, true));
+
+    }
+
+    private void heapMemoryUseTest() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Runtime runtime = Runtime.getRuntime();
+                long javaMax = runtime.maxMemory();
+                long javaTotal = runtime.totalMemory();
+                long javaFree = runtime.freeMemory();
+                long javaUsed = javaTotal - javaFree;
+                // Java 内存使用超过最大限制的 85%
+                float proportion = (float) javaUsed / javaMax;
+                LogUtil.d("javaMax = " + formatMemorySize(javaMax));
+                LogUtil.d("javaTotal = " + formatMemorySize(javaTotal));
+                LogUtil.d("javaFree = " + formatMemorySize(javaFree));
+                LogUtil.d("heapMemoryUseProportion = " + (proportion * 100) + "%");
+            }
+        }, 0, 5000);
+
     }
 
 }

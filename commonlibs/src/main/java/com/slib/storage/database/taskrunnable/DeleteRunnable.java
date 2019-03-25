@@ -27,7 +27,7 @@ public class DeleteRunnable<T, V> extends BaseDbRunnable {
     }
 
     @Override
-    protected Class getDependModeClass() {
-        return dependModeClass;
+    protected Class[] getDependModeClass() {
+        return new Class[]{dependModeClass};
     }
 }

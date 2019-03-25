@@ -11,5 +11,5 @@ import com.slib.storage.database.core.DataBaseManager;
 public interface IDBControllerHandler<T, V> {
     V operateDataBaseAsync(DataBaseManager mDBManager, T input);
 
-    Class<?> getDependModeClass();
+    Class<?> []getDependModeClass();
 }

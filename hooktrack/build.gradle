@@ -1,15 +1,13 @@
-apply plugin: 'com.android.application'
-apply plugin: 'android-aspectjx'
+apply plugin: 'com.android.library'
+
 android {
     compileSdkVersion project.global_compileSdkVersion as int
     buildToolsVersion project.global_buildToolsVersion
     defaultConfig {
-        applicationId "com.demo.ui.uiapplication"
         minSdkVersion project.global_minSdkVersion as int
         targetSdkVersion project.global_targetSdkVersion as int
         versionCode 1
-        versionName "3.0"
-        multiDexEnabled true
+        versionName "1.0"
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -18,23 +16,20 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:palette-v7:28.0.0'
+//    api fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'org.aspectj:aspectjrt:1.8.9'
     implementation project.global_design_support
     implementation project.global_constraint_layout
     implementation project.global_appcompat
-
-    implementation project(':pulltorefresh')
     implementation project(':commonlibs')
-    implementation project(':plugininterface')
-    implementation project(':hooktrack')
-    implementation 'com.android.support:multidex:1.0.3'
+
 }
 
 //import org.aspectj.bridge.IMessage
@@ -42,7 +37,7 @@ dependencies {
 //import org.aspectj.tools.ajc.Main
 //
 //final def log = project.logger
-//final def variants = project.android.applicationVariants
+//final def variants = project.android.libraryVariants
 //
 //variants.all { variant ->
 //    if (!variant.buildType.isDebuggable()) {

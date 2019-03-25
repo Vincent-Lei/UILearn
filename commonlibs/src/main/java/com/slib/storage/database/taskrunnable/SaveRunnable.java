@@ -63,7 +63,7 @@ public class SaveRunnable<T, V> extends BaseDbRunnable {
 
     @Override
     protected V dbOperate(DataBaseManager dataBaseManager) {
-        Class<?> tClass = getDependModeClass();
+        Class<?> tClass = getDependModeClass()[0];
         TableAnnotation tableAnnotation = tClass.getAnnotation(TableAnnotation.class);
         tableName = tableAnnotation.tableName();
         if (param != null)
@@ -74,7 +74,7 @@ public class SaveRunnable<T, V> extends BaseDbRunnable {
     }
 
     @Override
-    protected Class getDependModeClass() {
-        return (param != null ? param.t.getClass() : (paramList.get(0).t.getClass()));
+    protected Class[] getDependModeClass() {
+        return new Class[]{(param != null ? param.t.getClass() : (paramList.get(0).t.getClass()))};
     }
 }

@@ -63,7 +63,12 @@ public abstract class BaseDbRunnable<T, V> implements Runnable {
             throw new IllegalArgumentException("please init DataBaseManager suggest init int Application");
         try {
             SQLiteDatabase db = dataBaseManager.getDataBase();
-            TableManager.updateTable(db, getDependModeClass());
+            Class<?>[] classZZ = getDependModeClass();
+            if (classZZ != null && classZZ.length > 0) {
+                for (int i = 0; i < classZZ.length; i++) {
+                    TableManager.updateTable(db, classZZ[i]);
+                }
+            }
             resultV = dbOperate(dataBaseManager);
         } catch (Exception e) {
             e.printStackTrace();
@@ -94,7 +99,7 @@ public abstract class BaseDbRunnable<T, V> implements Runnable {
 
     protected abstract V dbOperate(DataBaseManager dataBaseManager);
 
-    protected abstract Class<T> getDependModeClass();
+    protected abstract Class<T>[] getDependModeClass();
 
     private void callBack() {
         if (replyListener != null)

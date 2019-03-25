@@ -20,7 +20,6 @@ import java.util.List;
 
 public class TableManager {
     private static final String DEFAULT_DB_NAME = "app_data_db.db";
-    public static final int DB_VERSION = 1;
     public static String DB_NAME = DEFAULT_DB_NAME;
     private static final HashSet<String> mTableCheckedSet = new HashSet<>(8);
 

@@ -23,12 +23,12 @@ public class DataBaseManager {
     private SQLiteDatabase db;
     private Handler mHandler;
 
-    public void initDataBase(String dbName) {
+    public void initDataBase(String dbName, int dbVersion) {
         if (TextUtils.isEmpty(dbName))
             dbName = context.getPackageName() + "_db.db";
         TableManager.DB_NAME = dbName;
         this.mHandler = new Handler(Looper.getMainLooper());
-        this.dbHelper = new DataBaseHelper(this.context);
+        this.dbHelper = new DataBaseHelper(this.context, dbVersion);
     }
 
     private DataBaseManager(Context context) {
@@ -118,7 +118,6 @@ public class DataBaseManager {
     public void endTransaction() {
         db.endTransaction();
     }
-
 
 
 }

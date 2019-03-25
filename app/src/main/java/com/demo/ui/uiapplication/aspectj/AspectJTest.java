@@ -14,6 +14,8 @@ import com.demo.ui.uiapplication.R;
  * Note：
  */
 public class AspectJTest extends AppCompatActivity {
+    AspectFragment aspectFragment;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +23,16 @@ public class AspectJTest extends AppCompatActivity {
         findViewById(R.id.btn_click).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                debug("click R.id.btn_click");
+                if (aspectFragment == null) {
+                    aspectFragment = new AspectFragment();
+                    getSupportFragmentManager().beginTransaction().add(R.id.fl_container, aspectFragment).commit();
+                } else {
+                    if (aspectFragment.isHidden())
+                        getSupportFragmentManager().beginTransaction().show(aspectFragment).commit();
+                    else
+                        getSupportFragmentManager().beginTransaction().hide(aspectFragment).commit();
+                }
+
             }
         });
 
@@ -40,27 +51,26 @@ public class AspectJTest extends AppCompatActivity {
         LogUtil.d("--x+y--：" + (x + y));
     }
 
-    @DebugLog(tag = "debug_info")
-    public void debug(String msg){
+    public void debug(String msg) {
         LogUtil.d(msg);
     }
 
-    public void printMsg(String msg){
+    public void printMsg(String msg) {
         LogUtil.d(msg);
     }
 
 
-    public void method1(){
+    public void method1() {
         method3();
         LogUtil.d("---method1---");
     }
 
-    public void method2(){
+    public void method2() {
         method3();
         LogUtil.d("---method2---");
     }
 
-    public void method3(){
+    public void method3() {
         LogUtil.d("---method3---");
     }
 }
