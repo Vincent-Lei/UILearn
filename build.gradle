@@ -1,13 +1,53 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    
+
     repositories {
-        google()
-        jcenter()
+        maven {
+            url uri('./plugins/repo')
+        }
+
+        //判断是否是内网下
+        InetAddress addr = InetAddress.getLocalHost()
+        String ip = addr.getHostAddress()
+        boolean isPAWLANNet = false
+        if (ip != null && ip.startsWith("10.")) {//内网的ip是以10.开头
+            isPAWLANNet = true
+        }
+        if (isPAWLANNet) {
+            //平安科技内网仓库
+            maven {
+                url "http://maven.paic.com.cn/repository/maven-public/"
+            }
+        } else {
+            //外网阿里镜像（外网无需翻墙）
+            maven {
+                url 'https://maven.aliyun.com/repository/public'
+            }
+            maven {
+                url 'https://maven.aliyun.com/repository/jcenter'
+            }
+            maven {
+                url 'https://maven.aliyun.com/repository/central'
+            }
+            maven {
+                url 'https://maven.aliyun.com/repository/google'
+            }
+            maven {
+                url 'https://maven.aliyun.com/repository/gradle-plugin'
+            }
+
+            maven {
+                url "https://plugins.gradle.org/m2/"
+            }
+            jcenter()
+            mavenCentral()
+            google()
+
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.1'
+        classpath 'com.android.tools.build:gradle:3.1.4'
         classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.4'
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -17,9 +57,46 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
-        jcenter()
+
+        def env = checkRepositoriesEnv();
+        if (env) {
+            //平安科技内网仓库
+            maven {
+                url "http://maven.paic.com.cn/repository/maven-public/"
+            }
+        } else {
+            //外网阿里镜像（外网无需翻墙）
+            maven {
+                url 'https://maven.aliyun.com/repository/public'
+            }
+            maven {
+                url 'https://maven.aliyun.com/repository/jcenter'
+            }
+            maven {
+                url 'https://maven.aliyun.com/repository/central'
+            }
+            maven {
+                url 'https://maven.aliyun.com/repository/google'
+            }
+            maven {
+                url 'https://maven.aliyun.com/repository/gradle-plugin'
+            }
+            jcenter()
+            mavenCentral()
+            google()
+        }
     }
+
+}
+//判断运行环境
+static boolean checkRepositoriesEnv() {
+    InetAddress addr = InetAddress.getLocalHost()
+    String ip = addr.getHostAddress()
+    boolean isPAWLANNet = false
+    if (ip != null && ip.startsWith("10.")) {
+        isPAWLANNet = true
+    }
+    return isPAWLANNet
 }
 
 task clean(type: Delete) {

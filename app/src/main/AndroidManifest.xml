@@ -175,6 +175,10 @@
         <activity
             android:name=".dynamicload.ProxyActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name=".xlistviewnestscroll.XScrollActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/activity_animation" />
     </application>
 
 </manifest>

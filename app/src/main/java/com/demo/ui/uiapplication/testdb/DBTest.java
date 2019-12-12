@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class DBTest {
     public static void testDb(Context context) {
-        DBWorker.initDataBase(context, "test_db_db.db");
+        DBWorker.initDataBase(context, "test_db_db.db",1);
 //        LogUtil.d("start to test db");
 //        Animal animal = new Animal();
 //        animal.id = 1;
@@ -106,8 +106,8 @@ public class DBTest {
             }
 
             @Override
-            public Class<?> getDependModeClass() {
-                return Book.class;
+            public Class<?>[] getDependModeClass() {
+                return new Class[]{Book.class};
             }
         }, new IDBReplyListener<Void>() {
             @Override

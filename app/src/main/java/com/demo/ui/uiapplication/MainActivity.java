@@ -46,6 +46,7 @@ import com.demo.ui.uiapplication.testinputlayout.TextInputLayoutTest;
 import com.demo.ui.uiapplication.textview.TextViewTest;
 import com.demo.ui.uiapplication.toolbar.ToolBarTest;
 import com.demo.ui.uiapplication.viewpagetransformer.PageTransformerTest;
+import com.demo.ui.uiapplication.xlistviewnestscroll.XScrollActivity;
 import com.slib.memorycache.MemoryCacheUtil;
 import com.slib.utils.NotificationUtil;
 
@@ -82,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         mItemList.add("TestNotification");
         mItemList.add("TestCancelNotification");
         mItemList.add("DynamicLoadTest");
+        mItemList.add("XScrollActivity");
     }
 
     @Override
@@ -163,6 +165,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 22:
                         intent = new Intent(MainActivity.this, DynamicLoadTest.class);
+                        break;
+                    case 23:
+                        intent = new Intent(MainActivity.this, XScrollActivity.class);
                         break;
                 }
                 if (intent != null)

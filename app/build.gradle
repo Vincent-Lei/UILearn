@@ -25,7 +25,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:palette-v7:28.0.0'
+    implementation 'com.android.support:palette-v7:26.1.0'
     implementation project.global_design_support
     implementation project.global_constraint_layout
     implementation project.global_appcompat
